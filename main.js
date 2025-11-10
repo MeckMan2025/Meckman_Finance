@@ -201,7 +201,7 @@ class FinanceTeacher {
         const separator = endpoint.includes('?') ? '&' : '?';
         const fullUrl = `${url}${separator}apikey=${this.fmpApiKey}`;
         
-        console.log('Making FMP API request to:', fullUrl);
+        console.log('Making FMP API request to:', endpoint);
         
         try {
             // Add 10 second timeout to prevent hanging
