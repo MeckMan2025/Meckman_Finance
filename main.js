@@ -7,8 +7,13 @@ Chart.register(window['chartjs-plugin-annotation']);
 class FinanceTeacher {
     constructor() {
         // Financial Modeling Prep API configuration
-        // Use environment variable from Cloudflare if available, otherwise use local config
-        this.fmpApiKey = window.FMP_API_KEY || CONFIG.FMP_API_KEY;
+        // Use environment variable from Cloudflare (injected by middleware)
+        this.fmpApiKey = window.FMP_API_KEY;
+        
+        if (!this.fmpApiKey) {
+            console.error('FMP_API_KEY not found. Please set environment variable in Cloudflare Pages.');
+            throw new Error('API key not configured');
+        }
         this.fmpBaseUrl = 'https://financialmodelingprep.com/stable';
         
         // Free tier supported symbols (sample set)
