@@ -1,0 +1,134 @@
+
+MECKMAN DESIGN SYSTEM – VERSION 3.2
+
+1. Brand Essence
+
+The Meckman aesthetic represents precision framed through curiosity.
+Every interaction should feel intentional, focused, and spatially grounded — like stepping into a small, illuminated chamber within a dark lab.
+
+Keywords: Focus. Control. Discovery. Clarity in the dark.
+
+⸻
+
+2. Core Visual Theme
+	•	Primary: Black (#000000) — endless space, clarity through contrast.
+	•	Secondary: Charcoal (#2A2A2A) — structure and containment.
+	•	Accents:
+	•	Tan (#FFF2CC) — warmth, craftsmanship, and quiet refinement.
+	•	Red (#CC0000) — curiosity spark; rare and deliberate.
+	•	Text: White (#FFFFFF) and Light Gray (#CCCCCC) for hierarchy.
+
+Usage Ratio: 70% Black / 20% Charcoal / 8% White & Gray / 2% Tan + Red.
+
+⸻
+
+3. Modals & Panels
+
+Purpose
+
+Modals and panels are the heart of Meckman UX.
+They focus user attention, eliminate noise, and create intentional moments of interaction within the broader black canvas.
+They’re not interruptions — they are frames for clarity.
+
+Design Principles
+	1.	Isolation by Darkness
+	•	When a modal opens, the background dims to near-black (#000000 at 80–90% opacity).
+	•	The modal emerges like a lit control surface — an “interface island.”
+	2.	Rounded Corners Always
+	•	All panels and modals have rounded corners between 10–14px.
+	•	Corners soften the technical feel and make the space feel human-crafted.
+	3.	Minimal Shadows
+	•	Use subtle outer glows or light tan outlines instead of heavy shadows.
+	•	Depth should feel optical, not layered.
+	4.	Contained Hierarchy
+	•	Each modal should express a single intent.
+	•	No nested modals — instead, use stepwise progression or inline transitions.
+
+⸻
+
+Visual Treatment
+
+Element	Color	Notes
+Modal Background	Charcoal (#2A2A2A)	Main surface, matte finish
+Border	Thin tan or red line (1–2px)	Defines focus and curiosity
+Text	White (#FFFFFF)	Primary
+Subtext / Labels	Light Gray (#CCCCCC)	Secondary
+Button Area	Black or Tan	Clear separation at bottom of modal
+Accent Detail	Single red icon, dot, or underline	Used sparingly as a curiosity cue
+
+
+⸻
+
+Modal Layout Standards
+	•	Padding: 32px all sides minimum
+	•	Corner Radius: 12px (never square)
+	•	Max Width: 480–720px (desktop)
+	•	Vertical Alignment: Centered on screen
+	•	Responsive Behavior: Expands downward on mobile but preserves central focus
+
+Example Modal Composition
+
+[Header] — White text, clear title (e.g., “Connect Device”)
+[Body] — Compact text block and 1–2 key inputs
+[Actions] — Primary button (black), secondary (outlined tan)
+
+
+⸻
+
+Behavior
+	•	Background behind modal becomes inert and darkened.
+	•	Modal should not slide or bounce in — it should fade gently (200ms max).
+	•	Closing actions should feel calm and deliberate (e.g., fade-out or dissolve).
+	•	No stacking modals — each represents one complete microtask.
+
+⸻
+
+4. Layout & Structure
+	•	The black background is the environment — everything lives against it.
+	•	Panels and modals create focal areas within that environment.
+	•	Each layer (page → panel → modal) represents increased focus.
+	•	Use consistent vertical spacing (24–32px).
+	•	Avoid clutter, outlines, or gradients except to define boundaries.
+
+⸻
+
+5. Components Summary
+
+Component	Core Color	Behavior	Style
+Card	Charcoal	Static	Rounded 8px, tan border
+Panel	Charcoal	Slide or appear	Rounded 10px, thin tan border
+Modal	Charcoal	Fade in	Rounded 12px, tan or red border
+Button	Black / Tan	Hover invert	Rounded 6px
+Input Field	Charcoal	Focus glow (tan)	Rounded 6px
+Divider	Tan line at 20% opacity	—	Straight, centered spacing
+
+
+⸻
+
+6. Tone & Copy
+
+Every modal or panel should:
+	•	Speak clearly and directly.
+	•	Begin with an action word (“Connect Device,” “Enter Location,” “Track Motion”).
+	•	End with a clear decision (“Go,” “Save,” “Start”).
+	•	Avoid uncertainty — the user should always know what will happen next.
+
+⸻
+
+7. Brand Signature
+
+Trait	Translation
+Precision	Strict alignment and spacing
+Warmth	Tan borders and light touch of softness
+Curiosity	Single red accent per view
+Focus	Use of modals and panels as illuminated frames
+Calm	Static layouts, no motion or clutter
+
+
+⸻
+
+Core Principle
+
+“Every Meckman modal is a moment of clarity in a dark space.”
+
+When you open one, the user should feel like the world goes quiet — and their task becomes obvious.

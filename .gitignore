@@ -1,0 +1,8 @@
+# API Keys and sensitive data
+config.js
+Financial_Modeling_Prep_API_Key.txt
+
+# Development
+.DS_Store
+node_modules/
+*.log

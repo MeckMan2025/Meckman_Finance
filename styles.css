@@ -1,0 +1,440 @@
+/* Meckman Design System v3.2 - Finance Teacher */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #000000;
+    color: #FFFFFF;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.app-container {
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-width: 1400px;
+}
+
+/* Header Styles */
+.app-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.app-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #FFFFFF;
+}
+
+.app-subtitle {
+    font-size: 1.2rem;
+    color: #CCCCCC;
+    margin-bottom: 32px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+/* Ticker Input Modal */
+.ticker-input-modal {
+    background-color: #2A2A2A;
+    border: 2px solid #FFF2CC;
+    border-radius: 12px;
+    padding: 32px;
+    margin: 0 20px 40px 20px;
+    width: calc(100% - 40px);
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.modal-header {
+    margin-bottom: 24px;
+}
+
+.modal-header h2 {
+    color: #FFFFFF;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.modal-description {
+    color: #CCCCCC;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.ticker-input-section {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+#tickerInput {
+    background-color: #2A2A2A;
+    border: 2px solid #FFF2CC;
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 1.1rem;
+    color: #FFFFFF;
+    min-width: 280px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+#tickerInput:focus {
+    border-color: #FFF2CC;
+    box-shadow: 0 0 0 3px rgba(255, 242, 204, 0.2);
+}
+
+#tickerInput::placeholder {
+    color: #CCCCCC;
+}
+
+#searchButton {
+    background-color: #FFF2CC;
+    color: #000000;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#searchButton:hover {
+    background-color: #000000;
+    color: #FFF2CC;
+    border: 2px solid #FFF2CC;
+}
+
+#searchButton:active {
+    transform: translateY(1px);
+}
+
+/* Error and Loading States */
+.error-message {
+    border: 2px solid #CC0000;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0 0 0;
+    text-align: center;
+    color: #CC0000;
+    font-weight: 500;
+    background-color: rgba(204, 0, 0, 0.1);
+}
+
+.loading-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #FFF2CC;
+    font-weight: 500;
+    margin: 16px 0 0 0;
+}
+
+.loading-spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid #2A2A2A;
+    border-top: 3px solid #FFF2CC;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Charts Container */
+.charts-container {
+    flex: 1;
+    display: grid;
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+/* Chart Cards */
+.chart-card {
+    background-color: #2A2A2A;
+    border: 2px solid #FFF2CC;
+    border-radius: 12px;
+    padding: 32px;
+    transition: all 0.3s ease;
+    width: calc(100% - 40px);
+    max-width: 1080px;
+    margin: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.chart-card:hover {
+    border-color: #CC0000;
+    transform: translateY(-2px);
+}
+
+.chart-header {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.chart-header h2 {
+    color: #FFFFFF;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Info Button and Tooltip */
+.info-button {
+    background: transparent;
+    border: 1px solid #FFF2CC;
+    color: #FFF2CC;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.info-button:hover {
+    background-color: #FFF2CC;
+    color: #000000;
+}
+
+.tooltip {
+    display: none !important;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #000000;
+    border: 2px solid #FFF2CC;
+    border-radius: 12px;
+    padding: 20px;
+    width: 450px;
+    max-width: 90vw;
+    z-index: 10000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+}
+
+.tooltip-header {
+    color: #FFF2CC;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #FFF2CC;
+    padding-bottom: 8px;
+}
+
+.tooltip-content {
+    color: #CCCCCC;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.tooltip-content p {
+    margin: 4px 0;
+}
+
+.tooltip-content strong {
+    color: #FFFFFF;
+}
+
+.tooltip-content em {
+    color: #FFF2CC;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.tooltip.show {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.educational-label {
+    color: #CCCCCC;
+    font-size: 1rem;
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.chart-container {
+    position: relative;
+    height: 400px;
+    width: 100%;
+}
+
+.chart-container canvas {
+    border-radius: 8px;
+}
+
+/* Footer */
+.app-footer {
+    text-align: center;
+    padding: 24px 0;
+    color: #CCCCCC;
+    font-size: 0.9rem;
+    border-top: 1px solid #2A2A2A;
+    margin-top: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .app-container {
+        padding: 16px;
+        max-width: 100%;
+    }
+    
+    .app-header h1 {
+        font-size: 2rem;
+    }
+    
+    .app-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .chart-header h2 {
+        font-size: 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .tooltip {
+        width: 320px;
+        max-width: 95vw;
+        font-size: 0.9rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .ticker-input-modal {
+        margin: 0 10px 40px 10px;
+        width: calc(100% - 20px);
+        padding: 24px;
+    }
+    
+    .ticker-input-section {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    #tickerInput {
+        min-width: auto;
+        width: 100%;
+        max-width: 320px;
+    }
+    
+    #searchButton {
+        width: 100%;
+        max-width: 320px;
+    }
+    
+    .chart-card {
+        padding: 24px;
+        margin: 0 10px;
+        width: calc(100% - 20px);
+    }
+    
+    .chart-container {
+        height: 300px;
+    }
+    
+    .chart-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .educational-label {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .app-subtitle {
+        font-size: 1rem;
+    }
+    
+    .ticker-input-modal {
+        margin: 0 5px 40px 5px;
+        width: calc(100% - 10px);
+        padding: 20px;
+    }
+    
+    .chart-card {
+        padding: 20px;
+        border-radius: 10px;
+        margin: 0 5px;
+        width: calc(100% - 10px);
+    }
+    
+    .chart-container {
+        height: 280px;
+    }
+}
+
+/* Chart-specific styling overrides */
+.chart-card canvas {
+    background-color: transparent !important;
+}
+
+/* Animation for chart cards appearing */
+.chart-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideInUp 0.6s ease forwards;
+}
+
+.chart-card:nth-child(1) { animation-delay: 0.1s; }
+.chart-card:nth-child(2) { animation-delay: 0.2s; }
+.chart-card:nth-child(3) { animation-delay: 0.3s; }
+.chart-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

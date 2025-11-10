@@ -1,0 +1,145 @@
+Vanilla HTML/CSS/JS + Finnhub API + Cloudflare Pages = zero backend friction, instant load times, and a clean foundation for you to iterate on.
+
+Here’s your updated tight PRD, tuned for that environment — ready to paste into your project README or planning doc.
+
+⸻
+
+📘 Product Requirements Document
+
+Product Name: Finance Teacher
+Version: 1.0
+Author: Andrew Meckley
+Deployment: https://finance.meckman.org (Cloudflare Pages)
+Stack: Vanilla HTML, CSS, JavaScript (no frameworks)
+Data Source: Finnhub.io Free API￼
+
+⸻
+
+🎯 Goal
+
+Create a simple, visual, web-based finance learning app that helps students understand how a company’s performance and valuation change over time.
+Users type in a stock ticker (e.g. TSLA), and the app displays four simple, intuitive modals with educational charts.
+
+⸻
+
+🧱 Core Features
+
+1️⃣ Enter Company Stock Ticker
+
+Purpose: Accept a user-input stock symbol.
+Design:
+	•	Input box + "Go" button at top.
+	•	Validate and persist symbol in local storage.
+Error Handling:
+	•	If invalid or API error → Show message:
+“Ticker not found — please try again.”
+Output:
+	•	Valid ticker triggers all four data fetches below.
+
+⸻
+
+2️⃣ Stock Price Time History (12-month Line Graph)
+
+Concept: Show how a company’s stock price has changed over the last year.
+API Endpoint: /stock/candle
+Parameters:
+	•	symbol: user input
+	•	resolution: D (daily)
+	•	from: 12 months ago (UNIX timestamp)
+	•	to: current time
+Data Fields:
+	•	t (timestamps)
+	•	c (closing prices)
+Chart:
+	•	Line graph showing price trend (use Chart.js or plain canvas).
+	•	X-axis = month; Y-axis = price in USD.
+Educational Label:
+
+“Stock prices move like a rollercoaster — short drops are normal!”
+
+⸻
+
+3️⃣ Company Fundamentals (Revenue, Expenses, Profit)
+
+Concept: Visualize what makes a business healthy.
+API Endpoint: /stock/financials-reported
+Data Fields:
+	•	revenue → Sales
+	•	costOfRevenue or totalOperatingExpense → Expenses
+	•	netIncome → Profit
+Chart:
+	•	3-line chart (Revenue 🟩, Expenses 🟥, Profit 💙)
+	•	X-axis = Quarter; Y-axis = USD
+Educational Label:
+
+“A sustainable company earns more than it spends.”
+
+⸻
+
+4️⃣ Price-to-Earnings (P/E) Ratio Trend
+
+Concept: Show if the company is overvalued or undervalued.
+API Endpoint: /company-basic-financials
+Data Field: metric.peRatioTTM
+Chart:
+	•	Simple line chart of P/E over last 12 months (use same X scale as price).
+Educational Label:
+
+“When this line is high, investors are paying more for each $1 of profit.
+When it’s low, the stock might be ‘on sale.’”
+
+⸻
+
+5️⃣ Return on Equity (ROE) Trend
+
+Concept: Show how efficiently the company uses its money.
+API Endpoint: /company-basic-financials
+Data Field: metric.roeTTM
+Chart:
+	•	Line chart — X-axis = months, Y-axis = % return
+Educational Label:
+
+“This shows how good the company is at turning its money into more money.”
+
+⸻
+
+🧠 App Flow
+
+User enters ticker → Validate → 
+Call 3 Finnhub endpoints:
+  1. /stock/candle
+  2. /stock/financials-reported
+  3. /company-basic-financials
+→ Render 4 modals with charts + labels
+
+
+⸻
+
+🧩 Technical Design
+
+Area	Specification
+Structure	index.html, styles.css, main.js
+Library	Chart.js (CDN) for all charts
+API Auth	Finnhub API key stored in environment variable (use Cloudflare Pages secret binding)
+Error Handling	Try/catch → display friendly “Data unavailable” message
+Deployment	Push to GitHub → Cloudflare Pages auto-build
+Cache	Browser localStorage for last searched ticker
+Style Guide: Use Design_Requirements file for UX consistency
+
+
+⸻
+
+📱 Layout Overview (Mobile-First and laptop friendly, Scrollable Modals)
+	1.	Top Section:
+App title and ticker input stacked vertically and centered.
+Tap “Search” → loads four modals below.
+	2.	Modals (Stacked Vertically):
+Each chart appears in its own full-width modal card with rounded corners and light shadow.
+User scrolls down to move between:
+	•	Modal 1: Stock Price (12-month line graph)
+	•	Modal 2: Fundamentals (Revenue, Expenses, Profit)
+	•	Modal 3: P/E Ratio (Over/Undervalued trend)
+	•	Modal 4: ROE (Return on Equity trend)
+	3.	Footer:
+Centered text:
+“Powered by Finnhub.io — Educational use only, not investment advice.”
