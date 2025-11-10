@@ -201,6 +201,7 @@ class FinanceTeacher {
         const separator = endpoint.includes('?') ? '&' : '?';
         const fullUrl = `${url}${separator}apikey=${this.fmpApiKey}`;
         
+        // API security fix: only log endpoint, not full URL with API key
         console.log('Making FMP API request to:', endpoint);
         
         try {
