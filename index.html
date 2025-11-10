@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Teacher</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+    <script src="config.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Finance Teacher</h1>
+            <p class="app-subtitle">Learn about companies and see the story behind the numbers.</p>
+        </header>
+
+        <section class="ticker-input-modal">
+            <div class="modal-header">
+                <h2>Enter Stock Ticker</h2>
+                <p class="modal-description">Search for a public company to analyze its financial performance</p>
+            </div>
+            <div class="ticker-input-section">
+                <input type="text" id="tickerInput" placeholder="Try: AAPL, TSLA, MSFT, AMZN, GOOGL" autocomplete="off">
+                <button id="searchButton">Search</button>
+            </div>
+            <div style="text-align: center; margin-top: 0.5rem;">
+                <small style="color: #999; font-size: 0.8rem;">Free tier supports: AAPL, TSLA, AMZN, MSFT, GOOGL, META, NVDA, NFLX</small>
+            </div>
+            <div id="errorMessage" class="error-message hidden"></div>
+            <div id="loadingIndicator" class="loading-indicator hidden">
+                <div class="loading-spinner"></div>
+                <span>Loading financial data...</span>
+            </div>
+        </section>
+
+        <main id="chartsContainer" class="charts-container hidden">
+            <!-- Stock Price Chart -->
+            <section class="chart-card" id="priceCard">
+                <div class="chart-header">
+                    <h2>Stock Price (12 Months)</h2>
+                    <p class="educational-label">Stock prices move like a rollercoaster — short drops are normal!</p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="priceChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Fundamentals Chart -->
+            <section class="chart-card" id="fundamentalsCard">
+                <div class="chart-header">
+                    <h2>Company Fundamentals</h2>
+                    <p class="educational-label">A sustainable company earns more than it spends.</p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="fundamentalsChart"></canvas>
+                </div>
+            </section>
+
+            <!-- P/E Ratio Chart -->
+            <section class="chart-card" id="peCard">
+                <div class="chart-header">
+                    <h2>
+                        Price-to-Earnings (P/E) Ratio
+                        <button class="info-button" id="peInfoBtn">ⓘ</button>
+                        <div class="tooltip" id="peTooltip">
+                            <div class="tooltip-header">What is P/E Ratio?</div>
+                            <div class="tooltip-content">
+                                <p><strong>Think of it like this:</strong></p>
+                                <p>If you bought the whole company today, how many years would it take to earn back your money?</p>
+                                <br>
+                                <p><strong>How it works:</strong></p>
+                                <p>• Take the stock price (what you pay for 1 share)</p>
+                                <p>• Divide by earnings per share (profit per share in the last 12 months)</p>
+                                <p>• That's your P/E ratio!</p>
+                                <br>
+                                <p><strong>What it means:</strong></p>
+                                <p>• P/E of 15 = It takes 15 years to earn back your investment</p>
+                                <p>• Lower P/E = Cheaper stock (might be on sale!)</p>
+                                <p>• Higher P/E = More expensive (people think it will grow fast)</p>
+                            </div>
+                        </div>
+                    </h2>
+                    <p class="educational-label">When this line is high, investors are paying more for each $1 of profit. When it's low, the stock might be 'on sale.'</p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="peChart"></canvas>
+                </div>
+            </section>
+
+            <!-- ROE Chart -->
+            <section class="chart-card" id="roeCard">
+                <div class="chart-header">
+                    <h2>
+                        Return on Equity (ROE)
+                        <button class="info-button" id="roeInfoBtn">ⓘ</button>
+                        <div class="tooltip" id="roeTooltip">
+                            <div class="tooltip-header">What is Return on Equity (ROE)?</div>
+                            <div class="tooltip-content">
+                                <p><strong>Equity</strong> is the money that belongs to the owners of the company. ROE shows how much profit the company made with that owner's money. If ROE is 15%, that means for every $100 the owners put in, the company made $15 profit.</p>
+                            </div>
+                        </div>
+                    </h2>
+                    <p class="educational-label">This shows how good the company is at turning its money into more money.</p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="roeChart"></canvas>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>Powered by Financial Modeling Prep — Educational use only, not investment advice.</p>
+        </footer>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
