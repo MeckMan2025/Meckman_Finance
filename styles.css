@@ -20,7 +20,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    max-width: 1400px;
+    max-width: 900px;
 }
 
 /* Header Styles */
@@ -50,11 +50,9 @@ body {
     border: 2px solid #FFF2CC;
     border-radius: 12px;
     padding: 32px;
-    margin: 0 20px 40px 20px;
-    width: calc(100% - 40px);
-    max-width: 1080px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 40px auto;
+    width: 100%;
+    max-width: 800px;
     text-align: center;
 }
 
@@ -182,11 +180,9 @@ body {
     border-radius: 12px;
     padding: 32px;
     transition: all 0.3s ease;
-    width: calc(100% - 40px);
-    max-width: 1080px;
-    margin: 0 20px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .chart-card:hover {
