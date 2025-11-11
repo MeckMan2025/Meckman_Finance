@@ -65,4 +65,4 @@ Built with the Meckman Design System featuring:
 
 *Powered by Financial Modeling Prep — Educational use only, not investment advice.*
 
-<!-- Security update: API key protection -->
+<!-- API key configuration update - trigger deployment -->
