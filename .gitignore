@@ -1,6 +1,6 @@
 # API Keys and sensitive data
 config.js
-Financial_Modeling_Prep_API_Key.txt
+*.txt
 
 # Development
 .DS_Store
