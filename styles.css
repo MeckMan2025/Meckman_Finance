@@ -1,4 +1,4 @@
-/* Meckman Design System v3.2 - Finance Teacher */
+/* Meckman Design System v4.0 - Finance Teacher */
 
 * {
     margin: 0;
@@ -12,6 +12,21 @@ body {
     color: #FFFFFF;
     line-height: 1.6;
     min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 242, 204, 0.03) 0%, transparent 50%),
+        linear-gradient(45deg, transparent 48%, rgba(255, 242, 204, 0.02) 49%, rgba(255, 242, 204, 0.02) 51%, transparent 52%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 .app-container {
@@ -26,14 +41,25 @@ body {
 /* Header Styles */
 .app-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 80px;
 }
 
 .app-header h1 {
     font-size: 2.5rem;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 24px;
     color: #FFFFFF;
+    position: relative;
+}
+
+.app-header h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: #CC0000;
+    margin: 12px auto 0;
+    border-radius: 1px;
 }
 
 .app-subtitle {
@@ -47,13 +73,14 @@ body {
 /* Ticker Input Modal */
 .ticker-input-modal {
     background-color: #2A2A2A;
-    border: 2px solid #FFF2CC;
+    border: 1px solid rgba(255, 242, 204, 0.6);
     border-radius: 12px;
     padding: 32px;
-    margin: 0 auto 40px auto;
+    margin: 0 auto 120px auto;
     width: 100%;
     max-width: 800px;
     text-align: center;
+    box-shadow: 0 0 20px rgba(255, 242, 204, 0.1);
 }
 
 .modal-header {
@@ -64,7 +91,7 @@ body {
     color: #FFFFFF;
     font-size: 1.8rem;
     font-weight: 600;
-    margin-bottom: 12px;
+    margin-bottom: 24px;
 }
 
 .modal-description {
@@ -84,9 +111,9 @@ body {
 
 #tickerInput {
     background-color: #2A2A2A;
-    border: 2px solid #FFF2CC;
+    border: 1px solid rgba(255, 242, 204, 0.4);
     border-radius: 6px;
-    padding: 12px 16px;
+    padding: 14px 18px;
     font-size: 1.1rem;
     color: #FFFFFF;
     min-width: 280px;
@@ -96,7 +123,7 @@ body {
 
 #tickerInput:focus {
     border-color: #FFF2CC;
-    box-shadow: 0 0 0 3px rgba(255, 242, 204, 0.2);
+    box-shadow: 0 0 8px rgba(255, 242, 204, 0.4);
 }
 
 #tickerInput::placeholder {
@@ -104,11 +131,11 @@ body {
 }
 
 #searchButton {
-    background-color: #FFF2CC;
-    color: #000000;
-    border: none;
+    background-color: #000000;
+    color: #FFF2CC;
+    border: 1px solid #FFF2CC;
     border-radius: 6px;
-    padding: 12px 24px;
+    padding: 14px 32px;
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
@@ -116,9 +143,9 @@ body {
 }
 
 #searchButton:hover {
-    background-color: #000000;
-    color: #FFF2CC;
-    border: 2px solid #FFF2CC;
+    background-color: #FFF2CC;
+    color: #000000;
+    border: 1px solid #FFF2CC;
 }
 
 #searchButton:active {
@@ -169,30 +196,41 @@ body {
 .charts-container {
     flex: 1;
     display: grid;
-    gap: 32px;
+    gap: 80px;
     margin-bottom: 40px;
 }
 
 /* Chart Cards */
 .chart-card {
     background-color: #2A2A2A;
-    border: 2px solid #FFF2CC;
-    border-radius: 12px;
+    border: 1px solid rgba(255, 242, 204, 0.6);
+    border-radius: 10px;
     padding: 32px;
     transition: all 0.3s ease;
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
+    box-shadow: 0 0 15px rgba(255, 242, 204, 0.08);
 }
 
 .chart-card:hover {
-    border-color: #CC0000;
-    transform: translateY(-2px);
+    border-color: rgba(204, 0, 0, 0.8);
+    box-shadow: 0 0 25px rgba(204, 0, 0, 0.15);
 }
 
 .chart-header {
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     text-align: center;
+    position: relative;
+}
+
+.chart-header::after {
+    content: '•';
+    display: block;
+    color: #CC0000;
+    font-size: 1.5rem;
+    margin-top: 16px;
+    opacity: 0.8;
 }
 
 .chart-header h2 {
@@ -237,16 +275,16 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #000000;
-    border: 2px solid #FFF2CC;
-    border-radius: 12px;
-    padding: 20px;
+    border: 1px solid #FFF2CC;
+    border-radius: 14px;
+    padding: 24px;
     width: 450px;
     max-width: 90vw;
     z-index: 10000;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 30px rgba(255, 242, 204, 0.3);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .tooltip-header {
@@ -305,11 +343,21 @@ body {
 /* Footer */
 .app-footer {
     text-align: center;
-    padding: 24px 0;
+    padding: 32px 0;
     color: #CCCCCC;
     font-size: 0.9rem;
-    border-top: 1px solid #2A2A2A;
+    border-top: 1px solid rgba(255, 242, 204, 0.1);
     margin-top: auto;
+    position: relative;
+}
+
+.app-footer::before {
+    content: '•';
+    display: block;
+    color: #FFF2CC;
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    opacity: 0.6;
 }
 
 /* Responsive Design */
