@@ -1,7 +1,7 @@
 // Cloudflare Pages Functions middleware to inject environment variables
 export async function onRequest(context) {
   // Add API keys to global scope for client-side access
-  const fmpApiKey = context.env.FMP_API_KEY || 'REDACTED_API_KEY';
+  const fmpApiKey = context.env.FMP_API_KEY || '';
   
   if (!context.env.FMP_API_KEY) {
     console.warn('FMP_API_KEY not found in environment variables, using fallback');
@@ -20,10 +20,16 @@ export async function onRequest(context) {
         </script>`
     );
     
+    const newHeaders = new Headers(response.headers);
+    newHeaders.set('X-Content-Type-Options', 'nosniff');
+    newHeaders.set('X-Frame-Options', 'DENY');
+    newHeaders.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+    newHeaders.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+
     return new Response(modifiedHtml, {
       status: response.status,
       statusText: response.statusText,
-      headers: response.headers,
+      headers: newHeaders,
     });
   }
 

@@ -5,6 +5,12 @@
 Chart.register(window['chartjs-plugin-annotation']);
 
 class FinanceTeacher {
+    escapeHtml(str) {
+        const d = document.createElement('div');
+        d.textContent = str;
+        return d.innerHTML;
+    }
+
     constructor() {
         // Financial Modeling Prep API configuration
         // Use environment variable from Cloudflare (injected by middleware)
@@ -89,7 +95,6 @@ class FinanceTeacher {
             const roeTooltip = document.getElementById('roeTooltip');
             
             if (roeInfoBtn && roeTooltip) {
-                console.log('Setting up ROE tooltip...');
                 this.roeTooltipSetup = true;
                 
                 // Create a new button to replace the old one (prevents duplicate listeners)
@@ -119,6 +124,11 @@ class FinanceTeacher {
 
         if (!ticker) {
             this.showError('Please enter a stock ticker symbol');
+            return;
+        }
+
+        if (!/^[A-Z]{1,5}$/.test(ticker)) {
+            this.showError('Invalid ticker symbol');
             return;
         }
 
@@ -201,9 +211,6 @@ class FinanceTeacher {
         const separator = endpoint.includes('?') ? '&' : '?';
         const fullUrl = `${url}${separator}apikey=${this.fmpApiKey}`;
         
-        // API security fix: only log endpoint, not full URL with API key
-        console.log('Making FMP API request to:', endpoint);
-        
         try {
             // Add 10 second timeout to prevent hanging
             const controller = new AbortController();
@@ -213,12 +220,8 @@ class FinanceTeacher {
                 signal: controller.signal 
             });
             clearTimeout(timeoutId);
-            console.log('FMP response status:', response.status);
             
             if (!response.ok) {
-                const errorText = await response.text();
-                console.error('FMP API Error Response:', errorText);
-                
                 if (response.status === 429) {
                     throw new Error('API_RATE_LIMIT');
                 }
@@ -229,7 +232,6 @@ class FinanceTeacher {
             }
 
             const data = await response.json();
-            console.log('FMP API Response data:', data);
             
             // Check for FMP error responses
             if (data.Error && data.Error.includes('API calls limit')) {
@@ -286,12 +288,12 @@ class FinanceTeacher {
             <div class="chart-header">
                 <h2 style="display: flex; align-items: center; gap: 0.75rem;">
                     <div style="width: 12px; height: 12px; background: #00CC00; border-radius: 50%;"></div>
-                    <span style="color: #FFF2CC;">${companyData.symbol}</span>
+                    <span style="color: #FFF2CC;">${this.escapeHtml(companyData.symbol)}</span>
                     <span style="color: #999; font-weight: normal; font-size: 0.8em;">—</span>
-                    <span style="color: #CCCCCC; font-weight: normal; font-size: 0.8em;">${companyData.name}</span>
+                    <span style="color: #CCCCCC; font-weight: normal; font-size: 0.8em;">${this.escapeHtml(companyData.name)}</span>
                 </h2>
                 <p class="educational-label">
-                    Exchange: ${companyData.exchange} • Currency: ${companyData.currency || 'USD'}
+                    Exchange: ${this.escapeHtml(companyData.exchange)} • Currency: ${this.escapeHtml(companyData.currency || 'USD')}
                 </p>
             </div>
         `;
@@ -317,12 +319,6 @@ class FinanceTeacher {
         const validQuarters = incomeData
             .slice(0, 4) // Get first 4 (most recent)
             .sort((a, b) => new Date(a.date) - new Date(b.date)); // Sort chronologically
-
-        console.log('Last 4 reported quarters:', validQuarters.map(q => ({
-            date: q.date,
-            period: q.period,
-            fiscalYear: q.fiscalYear
-        })));
 
         const processedData = validQuarters.map(quarter => {
             const fiscalDateEnding = quarter.date;

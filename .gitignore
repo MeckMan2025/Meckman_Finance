@@ -6,3 +6,8 @@ config.js
 .DS_Store
 node_modules/
 *.log
+.env
+.dev.vars
+.claude/
+*.key
+*.pem
